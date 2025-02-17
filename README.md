@@ -3,7 +3,7 @@
 ## Desplegar online usando streamlit
 Gracias a usar streamlit se puede hostear la aplicación en su comunidad a través de Github permitiendo el acceso simplemente desde esta url:
 
-- 
+- https://chat-ordenadores-alvaro.streamlit.app
 
 ---
 
