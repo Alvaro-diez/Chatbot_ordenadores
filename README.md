@@ -3,7 +3,7 @@
 ## Desplegar online usando streamlit
 Gracias a usar streamlit se puede hostear la aplicación en su comunidad a través de Github permitiendo el acceso simplemente desde esta url:
 
-- https://modelo-conver-alvaro.streamlit.app
+- 
 
 ---
 
@@ -37,16 +37,15 @@ Una vez activado podemos descargar las librerías necesarias
 ```bash
 pip install python-dotenv
 pip install streamlit
-pip install azure-ai-language-conversations
+pip install azure-identity azure-ai-translation-document azure-storage-blob
+pip install pymongo
+pip install openai
 ```
 
 ### 4. Definir `.env`
 Cuando ya estén instaladas tenemos que definir un archivo `.env` con la siguiente estructura:
 ```
-LS_CONVERSATIONS_ENDPOINT=<endpoint_language_azure>
-LS_CONVERSATIONS_KEY=<key_language_azure>
-PROJECT_NAME=<nombre_proyecto>
-DEPLOYMENT_NAME=<nombre_despliegue>
+
 ```
 
 En caso de que quieras utilizar el que yo he hecho mandame un correo a alvaro.diez@tajamar365.com
@@ -54,7 +53,7 @@ En caso de que quieras utilizar el que yo he hecho mandame un correo a alvaro.di
 ### 5. Lanzar proyecto
 Con todo ya correctemente hecho y definido, lanzamos la aplicación.
 ```bash
-streamlit run modelo-conv-intenciones.py
+streamlit run app.py
 ```
 
 
