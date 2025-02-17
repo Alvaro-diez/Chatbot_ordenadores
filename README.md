@@ -45,7 +45,12 @@ pip install openai
 ### 4. Definir `.env`
 Cuando ya estén instaladas tenemos que definir un archivo `.env` con la siguiente estructura:
 ```
-
+OPENAI_API_KEY="<openai_api_key>"
+OPENAI_ENDPOINT="<openai_endpoint>"
+MONGO_URL="<mongo_url>"
+TRANSLATOR_KEY="<translator_key>"
+TRANSLATOR_ENDPOINT="<transaltor_endpoint>"
+STORAGE_ACCOUNT_KEY="<storage_key>"
 ```
 
 En caso de que quieras utilizar el que yo he hecho mandame un correo a alvaro.diez@tajamar365.com
