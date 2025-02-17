@@ -1,3 +1,4 @@
+import os
 import json
 from openai import AzureOpenAI
 from pymongo import MongoClient
