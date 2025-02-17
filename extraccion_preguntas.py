@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 from openai import AzureOpenAI
 from pymongo import MongoClient
 from azure.core.credentials import AzureKeyCredential, AzureNamedKeyCredential
@@ -28,6 +29,9 @@ mongo_client = MongoClient(mongo_url)
 db = mongo_client[database_name]
 collection = db[collection_name]
 
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger()
 
 system_prompt = """
                 Tienes que extraer entidades de la pregunta del usuario sobre los componentes de un ordenador. Las posibles entidades que tienes que extraer son los siguiente campos:
@@ -83,7 +87,7 @@ def get_docs(user_message):
         )
 
         respuesta = response.choices[0].message.content
-        print(respuesta)
+        logger.info(respuesta)
         respuesta_json = json.loads(respuesta)
 
         # Construcción de la query para MongoDB
@@ -91,14 +95,14 @@ def get_docs(user_message):
         
         for clave, valor in respuesta_json.items():
             busqueda_json["$or"].append({"labels.label": clave, "labels.value": valor})
-        print(busqueda_json)
+        logger.info(busqueda_json)
 
         # Si solo hay una condición, quitamos el "$or"
         if len(busqueda_json["$or"]) == 1:
             busqueda_json = busqueda_json["$or"][0]
 
         result_list = list(collection.find(busqueda_json))
-        print(result_list)
+        logger.info(result_list)
 
         documentos = [result["document"] for result in result_list]
 
