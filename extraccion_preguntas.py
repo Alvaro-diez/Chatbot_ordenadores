@@ -104,7 +104,7 @@ def get_docs(user_message):
 
         logger.info("Intentando conectar con la base de datos MongoDB...")
         try:
-            client.admin.command('ping')  # Comando para verificar la conexión con el servidor de MongoDB
+            mongo_client.admin.command('ping')  # Comando para verificar la conexión con el servidor de MongoDB
             logger.info("Conexión exitosa con MongoDB")
         except Exception as e:
             logger.error(f"Error al conectar con MongoDB: {e}")
