@@ -83,19 +83,22 @@ def get_docs(user_message):
         )
 
         respuesta = response.choices[0].message.content
+        print(respuesta)
         respuesta_json = json.loads(respuesta)
 
         # Construcción de la query para MongoDB
         busqueda_json = {"$or": []}  # Lista de condiciones
-
+        
         for clave, valor in respuesta_json.items():
             busqueda_json["$or"].append({"labels.label": clave, "labels.value": valor})
+        print(busqueda_json)
 
         # Si solo hay una condición, quitamos el "$or"
         if len(busqueda_json["$or"]) == 1:
             busqueda_json = busqueda_json["$or"][0]
 
         result_list = list(collection.find(busqueda_json))
+        print(result_list)
 
         documentos = [result["document"] for result in result_list]
 
