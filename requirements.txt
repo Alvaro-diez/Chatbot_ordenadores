@@ -1,0 +1,8 @@
+openai
+python-dotenv
+streamlit
+azure-identity
+azure-ai-translation-document
+azure-storage-blob
+pymongo
+openai
