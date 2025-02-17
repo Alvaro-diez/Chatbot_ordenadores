@@ -1,13 +1,14 @@
 import os
 import json
-from azure.identity import DefaultAzureCredential
+from azure.core.credentials import AzureKeyCredential
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
 load_dotenv()
+account_key = os.getenv("STORAGE_ACCOUNT_KEY")
 account_url = "https://saiatradalvaro.blob.core.windows.net"
-credential = DefaultAzureCredential()
+credential = AzureKeyCredential(account_key)
 
 mongo_url = os.getenv("MONGO_URL")
 database_name = "f-tecnicas"

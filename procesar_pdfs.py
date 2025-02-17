@@ -1,10 +1,11 @@
 import os
-from azure.identity import DefaultAzureCredential
+from azure.core.credentials import AzureNamedKeyCredential
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
-
+account_name = "saiatradalvaro"
+account_key = os.getenv("STORAGE_ACCOUNT_KEY")
 account_url = "https://saiatradalvaro.blob.core.windows.net"
-credential = DefaultAzureCredential()
+credential = AzureNamedKeyCredential(account_name, account_key)
 
 blob_service_client = BlobServiceClient(account_url, credential=credential)
 container_client = blob_service_client.get_container_client(container="f-tecnicas")

@@ -2,10 +2,9 @@ import os
 import json
 from openai import AzureOpenAI
 from pymongo import MongoClient
-from azure.core.credentials import AzureKeyCredential
+from azure.core.credentials import AzureKeyCredential, AzureNamedKeyCredential
 from azure.ai.translation.document import DocumentTranslationClient, DocumentTranslationInput, TranslationTarget
 from azure.storage.blob import generate_blob_sas, generate_container_sas, BlobSasPermissions, ContainerSasPermissions, BlobServiceClient, BlobClient, ContainerClient
-from azure.identity import DefaultAzureCredential
 import datetime
 from dotenv import load_dotenv
 
@@ -117,7 +116,7 @@ account_name = "saiatradalvaro"
 account_key = os.getenv("STORAGE_ACCOUNT_KEY")
 
 account_url = "https://saiatradalvaro.blob.core.windows.net"
-credential = DefaultAzureCredential()
+credential = AzureNamedKeyCredential(account_name, account_key)
 
 # Create a translator client
 blob_client = DocumentTranslationClient(endpoint, AzureKeyCredential(key))
