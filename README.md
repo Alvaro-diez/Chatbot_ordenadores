@@ -33,13 +33,9 @@ Ahora tenemos que activar el entorno para que las librerías se descarguen en é
     ```
 
 ### 3. Descargar librerías
-Una vez activado podemos descargar las librerías necesarias
+Una vez activado podemos descargar las librerías necesarias haciendo uso de `requirements.txt`
 ```bash
-pip install python-dotenv
-pip install streamlit
-pip install azure-identity azure-ai-translation-document azure-storage-blob
-pip install pymongo
-pip install openai
+pip install requirements.txt
 ```
 
 ### 4. Definir `.env`
