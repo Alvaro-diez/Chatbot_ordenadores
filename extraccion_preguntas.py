@@ -94,6 +94,7 @@ def get_docs(user_message):
         if len(busqueda_json["$or"]) == 1:
             busqueda_json = busqueda_json["$or"][0]
 
+        print(busqueda_json)
         result_list = list(collection.find(busqueda_json))
 
         documentos = [result["document"] for result in result_list]
