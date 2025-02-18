@@ -1,6 +1,7 @@
 import streamlit as st
 from extraccion_preguntas import get_docs, translate_docs
-from procesar_pdfs import subida_pdfs
+from procesar_pdfs import subida_pdfs, docint_modelar
+from procesado_mongodb import insertar_documento
 import time
 
 def reset_state():
@@ -40,6 +41,8 @@ if not st.session_state.pdf_uploaded:
         pdf_name = pdf_file.name
         st.success(f"Archivo {pdf_name} subido correctamente")
         with st.spinner("Creando pedido...", show_time=True):
+            docint_modelar(pdf_name)
+            insertar_documento(pdf_name)
             time.sleep(2)
         st.success(f"Pedido creado correctamente")
         st.info("Para volver a subir un archivo o abrir el chat, quita manualmente el archivo y haz clic en el botón de Reiniciar")

@@ -3,6 +3,7 @@ python-dotenv
 streamlit
 azure-identity
 azure-ai-translation-document
+azure-ai-documentintelligence
 azure-storage-blob
 pymongo
 openai
