@@ -34,7 +34,7 @@ def insertar_documento(blob_name):
     logging.info(f"Insertando documento {blob_name}")
     for blob in container_client.list_blobs():
         if blob_name in blob.name and blob.name.endswith('.labels.json'):
-            blob_client = blob_service_client.get_blob_client(container="f-tecnicas", blob=blob_name)
+            blob_client = blob_service_client.get_blob_client(container="f-tecnicas", blob=blob)
             blob_data = blob_client.download_blob()
             json_data = json.loads(blob_data.readall())
             logging.info(f"Datos extraídos de {blob_name}")
