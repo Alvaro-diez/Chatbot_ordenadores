@@ -31,7 +31,7 @@ collection = db[collection_name]
 
 
 def insertar_documento(blob):
-    loggin.info(f"Insertando documento {blob}")
+    logging.info(f"Insertando documento {blob}")
     if blob.endswith('.labels.json'):
         blob_client = blob_service_client.get_blob_client(container="f-tecnicas", blob=blob)
         blob_data = blob_client.download_blob()
