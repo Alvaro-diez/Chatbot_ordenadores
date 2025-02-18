@@ -43,7 +43,7 @@ def docint_modelar(pdf_name):
     sourceUri = f"https://{account_name}.blob.core.windows.net/{container_name}/{pdf_name}"
 
     document_intelligence_client = DocumentIntelligenceClient(
-        endpoint=docint_endpoint, credential=AzureKeyCredential(docint_key)
+        docint_endpoint, AzureKeyCredential(docint_key)
     )
 
     # sourceUri_portal = "https://saiatradalvaro.blob.core.windows.net/f-tecnicas/XJ58G.pdf?sp=racwdymeop&st=2025-02-17T22:46:09Z&se=2025-02-18T06:46:09Z&spr=https&sv=2022-11-02&sr=b&sig=%2F8a39%2B1saGIUmgMSsKYlBdfmep4X6xKriYcgTg2g0fA%3D"
@@ -62,4 +62,3 @@ def docint_modelar(pdf_name):
     # save the dictionary as JSON content in a JSON file
     with open(f"{pdf_name}.labels.json", "w") as output_file:
         json.dump(analyze_result_dict, output_file, indent=4)
-        
