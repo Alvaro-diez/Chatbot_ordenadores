@@ -6,8 +6,9 @@ import time
 import logging
 
 logging.basicConfig(
-    level=logging.INFO,  # Nivel de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO,  # Nivel de logging
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()]  # Enviar logs a la consola
 )
 
 def reset_state():

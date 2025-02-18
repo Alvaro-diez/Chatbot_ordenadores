@@ -7,6 +7,13 @@ from azure.ai.translation.document import DocumentTranslationClient, DocumentTra
 from azure.storage.blob import generate_blob_sas, generate_container_sas, BlobSasPermissions, ContainerSasPermissions, BlobServiceClient, BlobClient, ContainerClient
 import datetime
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,  # Nivel de logging
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()]  # Enviar logs a la consola
+)
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -94,7 +101,7 @@ def get_docs(user_message):
         if len(busqueda_json["$or"]) == 1:
             busqueda_json = busqueda_json["$or"][0]
 
-        print(busqueda_json)
+        logging.info(busqueda_json)
         result_list = list(collection.find(busqueda_json))
 
         documentos = [result["document"] for result in result_list]

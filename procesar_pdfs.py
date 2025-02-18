@@ -59,6 +59,4 @@ def docint_modelar(pdf_name):
     json_data = json.dumps(analyze_result_dict, indent=4)
 
     container_client.upload_blob(f"{pdf_name}.labels.json", data=json_data, overwrite=True)
-    # save the dictionary as JSON content in a JSON file
-    with open(f"{pdf_name}.labels.json", "w") as output_file:
-        json.dump(analyze_result_dict, output_file, indent=4)
+
