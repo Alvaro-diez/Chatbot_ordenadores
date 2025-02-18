@@ -4,6 +4,12 @@ from azure.core.credentials import AzureKeyCredential, AzureNamedKeyCredential
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,  # Nivel de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 load_dotenv()
 account_name = "saiatradalvaro"
@@ -24,10 +30,12 @@ collection = db[collection_name]
 
 
 def insertar_documento(blob):
+    loggin.info(f"Insertando documento {blob}")
     if blob.endswith('.labels.json'):
         blob_client = blob_service_client.get_blob_client(container="f-tecnicas", blob=blob)
         blob_data = blob_client.download_blob()
         json_data = json.loads(blob_data.readall())
+        logging.info(f"Datos extraídos de {blob}")
 
         json_limpio = {
             "document": "",

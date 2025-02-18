@@ -3,6 +3,12 @@ from extraccion_preguntas import get_docs, translate_docs
 from procesar_pdfs import subida_pdfs, docint_modelar
 from procesado_mongodb import insertar_documento
 import time
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,  # Nivel de logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 def reset_state():
     st.session_state.clear()
@@ -42,8 +48,10 @@ if not st.session_state.pdf_uploaded:
         st.success(f"Archivo {pdf_name} subido correctamente")
         with st.spinner("Creando pedido...", show_time=True):
             docint_modelar(pdf_name)
+            logging.info(f"Modelado de {pdf_name} completado")
             insertar_documento(pdf_name)
-            time.sleep(2)
+            logging.info(f"Inserción de {pdf_name} completada")
+            # time.sleep(2)
         st.success(f"Pedido creado correctamente")
         st.info("Para volver a subir un archivo o abrir el chat, quita manualmente el archivo y haz clic en el botón de Reiniciar")
         st.session_state.pedido_creado = True
